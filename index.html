@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rute Kampus ULBI — CrootJS</title>
+<style>
+:root{--navy:#102a43;--blue:#0878e8;--ink:#17212b;--muted:#64748b;--paper:#f5f7fa;--line:#d9e1e8}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink)}
+header{background:var(--navy);color:white;padding:20px max(18px,calc((100vw - 1200px)/2))}header h1{margin:0 0 6px;font-size:22px}header p{margin:0;color:#d6e2ee;font-size:14px}
+main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:310px minmax(0,1fr);gap:16px}
+.panel,.mapcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px #102a430a}.panel{padding:18px;height:max-content}.panel h2{font-size:17px;margin:0 0 16px}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 7px}select,button{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:9px;background:white;font:inherit}button{border:0;background:var(--blue);color:white;font-weight:700;cursor:pointer;margin-top:14px}button.secondary{background:#eaf2ff;color:#0756a6;border:1px solid #c7ddff}button:hover{filter:brightness(.96)}
+.note{font-size:12px;line-height:1.5;color:var(--muted);margin-top:14px}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--line)}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}.maptop{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}#map{width:100%;height:min(72vh,720px);min-height:440px;display:block;background:#f8fafc} .status{padding:14px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.6}.status strong{color:var(--navy)}.tag{display:inline-block;border-radius:999px;background:#eef5ff;color:#0756a6;padding:4px 9px;font-size:11px;font-weight:bold}
+@media(max-width:800px){main{grid-template-columns:1fr;margin:12px auto}.panel{order:1} .mapcard{order:2}#map{height:60vh;min-height:380px}}
+</style>
+</head>
+<body>
+<header><h1>Rute Kampus Universitas Logistik dan Bisnis Internasional</h1><p>Peta gedung dan pencarian rute berbasis GeoJSON • dibuat dengan CrootJS dan SVG</p></header>
+<main>
+<section class="panel"><h2>Temukan Rute</h2>
+<label for="start">Titik berangkat</label><select id="start"></select>
+<label for="dest">Titik tujuan</label><select id="dest"></select>
+<button id="routeBtn">Tampilkan Rute</button><button class="secondary" id="resetBtn">Reset Rute</button>
+<div class="note">Pilih gedung asal dan tujuan. Garis biru menunjukkan jalur yang dihitung dari polyline jalan/l orong yang tersedia pada GeoJSON. Data jalan yang belum saling terhubung dapat membuat rute menjadi perkiraan.</div>
+</section>
+<section class="mapcard"><div class="maptop"><span><strong>Peta area kampus</strong></span><span class="tag">GeoJSON + CrootJS</span></div><div class="legend"><span><i class="dot" style="background:#111"></i>Bangunan</span><span><i class="dot" style="background:#94a3b8"></i>Polyline jalan</span><span><i class="dot" style="background:#0878e8"></i>Rute</span><span>🟢 Berangkat　🔴 Tujuan</span></div><svg id="map" viewBox="0 0 900 700" role="img" aria-label="Peta gedung dan rute ULBI"></svg><div class="status" id="status">Memuat data peta...</div></section>
+</main>
+<script type="module" src="./app.js"></script>
+</body></html>
